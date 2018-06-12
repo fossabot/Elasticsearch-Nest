@@ -1,6 +1,5 @@
 using System;
 using Castle.Windsor;
-using Elasticsearch.Source.Installers;
 using Elasticsearch.Source.Services;
 
 namespace Elasticsearch.Source
@@ -16,6 +15,9 @@ namespace Elasticsearch.Source
 
             executor.CreatingIndexExample();
             executor.DeletingIndexExample();
+            executor.InsertingDocumentsExample();
+            executor.UpdatingDocumentsExample();
+            executor.SearchingDocumentsExample();
 
             Console.ReadKey();
         }

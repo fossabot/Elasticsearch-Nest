@@ -9,6 +9,7 @@
     <PackageReference Include="Castle.Core" Version="4.3.0" />
     <PackageReference Include="Castle.Windsor" Version="4.1.0" />
     <PackageReference Include="NEST" Version="6.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
 </Project>

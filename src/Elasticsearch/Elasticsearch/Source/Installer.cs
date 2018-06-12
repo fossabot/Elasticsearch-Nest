@@ -5,7 +5,7 @@ using Elasticsearch.Source.Core.Abstraction;
 using Elasticsearch.Source.Core.Implementation;
 using Elasticsearch.Source.Services;
 
-namespace Elasticsearch.Source.Installers
+namespace Elasticsearch.Source
 {
     public class Installer : IWindsorInstaller
     {
