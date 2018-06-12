@@ -1,5 +1,6 @@
 language: csharp
+solution: src/Elasticsearch/Elasticsearch.sln
 mono: none
-dotnet: 2.0.7
+dotnet: 1.1.5
 script:
  - dotnet restore
