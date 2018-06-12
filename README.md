@@ -24,18 +24,14 @@ Client = new ElasticClient(settings);
 public class Book : Model
 {
     public string Name { get; set; }
-
     public int Price { get; set; }
-
     public int Pages { get; set; }
-
     public Author Author { get; set; }
 }
 
 public class Author : Model
 {
     public string Name { get; set; } = "Аноним";
-
     public DateTime BirthDate { get; set; }
 }
 ```
@@ -144,7 +140,7 @@ Valid NEST response built from a successful low level call on PUT: /books/book/1
   "pages": 900,
   "author": {
     "name": "Джеффри Рихтер",
-    "birthDate": "2048-06-12T18:09:33.2379757+03:00",
+    "birthDate": "1988-06-12T18:47:45.6233266+04:00",
     "id": 0
   },
   "id": 1
@@ -166,6 +162,7 @@ Valid NEST response built from a successful low level call on PUT: /books/book/1
   "_primary_term" : 1
 }
 
+
 Valid NEST response built from a successful low level call on PUT: /books/book/2?pretty=true&refresh=true
 # Request:
 {
@@ -174,7 +171,7 @@ Valid NEST response built from a successful low level call on PUT: /books/book/2
   "pages": 1200,
   "author": {
     "name": "Эндрю Троелсен",
-    "birthDate": "2048-06-12T18:09:33.2379787+03:00",
+    "birthDate": "1988-06-12T18:47:45.624878+04:00",
     "id": 0
   },
   "id": 2
@@ -197,7 +194,7 @@ Valid NEST response built from a successful low level call on PUT: /books/book/2
 }
 ```
 
-### Обновление документов
-### Удаление документов
-### Поиск документов и фильтры
-### Полнотекстовый поиск
+## Обновление документов
+## Удаление документов
+## Поиск документов и фильтры
+## Полнотекстовый поиск
