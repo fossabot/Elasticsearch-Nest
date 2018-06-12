@@ -27,7 +27,7 @@ namespace Elasticsearch.Source.Models
         public Author(string name)
         {
             Name = name;
-            BirthDate = DateTime.Now.AddYears(30);
+            BirthDate = DateTime.Now.AddYears(-30);
         }
     }
 }
