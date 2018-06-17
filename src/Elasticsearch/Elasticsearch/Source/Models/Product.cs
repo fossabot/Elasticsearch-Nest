@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Elasticsearch.Source.Models.Base;
 
@@ -19,6 +20,11 @@ namespace Elasticsearch.Source.Models
         public float Price { get; set; }
 
         /// <summary>
+        /// Описание.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
         /// Поставщик.
         /// </summary>
         public Vendor Vendor { get; set; }
@@ -27,6 +33,11 @@ namespace Elasticsearch.Source.Models
         /// Теги (ключевые слова).
         /// </summary>
         public List<string> Tags { get; set; }
+
+        /// <summary>
+        /// Дата создания (изготовления).
+        /// </summary>
+        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Инициализирует экземпляр класса <see cref="Product" />.

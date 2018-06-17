@@ -66,7 +66,7 @@ namespace Elasticsearch.Source.Core.Implementation
                 .Query(q => q.Term(t => t.Field("_id").Value(id)))
             ).Documents.FirstOrDefault();
 
-        public ISearchResponse<TObject> Search<TObject>(string indexName,
+        public ISearchResponse<TObject> Search<TObject>(
             Func<SearchDescriptor<TObject>, ISearchRequest<TObject>> selector)
             where TObject : class
             => Client.Search(selector);

@@ -5,8 +5,8 @@ namespace Elasticsearch.Source.Services.Abstraction
 {
     public interface ISearchService
     {
-        ISearchResponse<TObject> GetBySelector<TObject>(string indexName,
-            Func<SearchDescriptor<TObject>, ISearchRequest<TObject>> selector)
+        ISearchResponse<TObject> GetByQuery<TObject>(string indexName,
+            Func<QueryContainerDescriptor<TObject>, QueryContainer> query)
             where TObject : class;
     }
 }

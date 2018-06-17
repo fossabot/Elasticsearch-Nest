@@ -26,7 +26,7 @@ namespace Elasticsearch.Source.Core.Abstraction
         TObject GetById<TObject>(string indexName, Id id)
             where TObject : class;
 
-        ISearchResponse<TObject> Search<TObject>(string indexName,
+        ISearchResponse<TObject> Search<TObject>(
             Func<SearchDescriptor<TObject>, ISearchRequest<TObject>> selector)
             where TObject : class;
     }
