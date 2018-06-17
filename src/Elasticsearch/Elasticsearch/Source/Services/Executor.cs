@@ -13,7 +13,7 @@ namespace Elasticsearch.Source.Services
         protected IDocumentService DocumentService { get; }
         protected ISearchService SearchService { get; }
 
-        protected const string IndexName = "books";
+        protected const string IndexName = "products";
 
         public Executor(
             IIndexService indexService,
@@ -30,7 +30,7 @@ namespace Elasticsearch.Source.Services
             DeleteIndex();
 
             Console.WriteLine(
-                IndexService.Create<Book>(IndexName)
+                IndexService.Create<Product>(IndexName)
                     .DebugInformation
             );
 
@@ -63,7 +63,7 @@ namespace Elasticsearch.Source.Services
         {
             CreateIndex();
 
-            foreach (var book in GetBooks())
+            foreach (var book in GetProducts())
             {
                 Console.WriteLine(
                     DocumentService.AddOrUpdate(IndexName, new Id(book.Id), book)
@@ -77,8 +77,8 @@ namespace Elasticsearch.Source.Services
             CreateIndex();
             AddBooks();
 
-            var book = DocumentService.GetById<Book>(IndexName, new Id(1)) ??
-                throw new ApplicationException("Книга не найдена.");
+            var book = DocumentService.GetById<Product>(IndexName, new Id(1)) ??
+                throw new ApplicationException("Продукт не найден.");
 
             SetNewValues(book);
 
@@ -96,27 +96,26 @@ namespace Elasticsearch.Source.Services
             AddBooks();
 
             Console.WriteLine(
-                DocumentService.GetAll<Book>(IndexName)
+                DocumentService.GetAll<Product>(IndexName)
                     .Documents
                     .Count
             );
 
-            var book = DocumentService.GetById<Book>(IndexName, new Id(1));
+            var book = DocumentService.GetById<Product>(IndexName, new Id(1));
 
             Console.WriteLine(JsonConvert.SerializeObject(book, Formatting.Indented));
         }
 
-        private static void SetNewValues(Book book)
+        private static void SetNewValues(Product product)
         {
-            book.Name = $"{book.Name} (NEW)";
-            book.Author.Name = $"{book.Author.Name} (NEW)";
-            book.Author.BirthDate = DateTime.Now;
+            product.Name = $"{product.Name} (NEW)";
+            product.Price = new Random().Next(1000, 5000);
         }
 
         private void CreateIndex()
         {
             if (!IndexService.IndexExists(IndexName))
-                IndexService.Create<Book>(IndexName);
+                IndexService.Create<Product>(IndexName);
         }
 
         private void DeleteIndex()
@@ -125,19 +124,20 @@ namespace Elasticsearch.Source.Services
                 IndexService.Delete(IndexName);
         }
 
-        private static IEnumerable<Book> GetBooks()
+        private static IEnumerable<Product> GetProducts()
         {
-            return new List<Book>
+            return new List<Product>
             {
-                new Book("CLR via C#", 1_500, 900)
+                new Product("Смартфон Apple iPhone 8 256 ГБ", 62_999, new Vendor("Apple", "Китай"))
                 {
                     Id = 1,
-                    Author = new Author("Джеффри Рихтер"),
+                    Tags = new List<string> { "Apple", "iPhone", "Смартфон" }
                 },
-                new Book("C# 5.0 и платформа .NET", 2_000, 1_200)
+
+                new Product("Ноутбук Apple MacBook Pro Retina (Z0SW0009F)", 144_999, new Vendor("Apple", "Китай"))
                 {
                     Id = 2,
-                    Author = new Author("Эндрю Троелсен")
+                    Tags = new List<string> { "Apple", "MacBook", "Ноутбук" }
                 }
             };
         }
