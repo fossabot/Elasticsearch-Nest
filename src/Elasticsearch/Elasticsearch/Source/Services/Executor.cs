@@ -56,18 +56,18 @@ namespace Elasticsearch.Source.Services
         public void InsertingDocumentsExample()
         {
             CreateIndex();
-            AddBooks();
+            AddProducts();
             DeleteIndex();
         }
 
-        private void AddBooks()
+        private void AddProducts()
         {
             CreateIndex();
 
-            foreach (var book in GetProducts())
+            foreach (var product in GetProducts())
             {
                 Console.WriteLine(
-                    DocumentService.AddOrUpdate(IndexName, new Id(book.Id), book)
+                    DocumentService.AddOrUpdate(IndexName, new Id(product.Id), product)
                         .DebugInformation
                 );
             }
@@ -76,15 +76,15 @@ namespace Elasticsearch.Source.Services
         public void UpdatingDocumentsExample()
         {
             CreateIndex();
-            AddBooks();
+            AddProducts();
 
-            var book = DocumentService.GetById<Product>(IndexName, new Id(1)) ??
+            var product = DocumentService.GetById<Product>(IndexName, new Id(1)) ??
                 throw new ApplicationException("Продукт не найден.");
 
-            SetNewValues(book);
+            SetNewValues(product);
 
             Console.WriteLine(
-                DocumentService.AddOrUpdate(IndexName, new Id(book.Id), book)
+                DocumentService.AddOrUpdate(IndexName, new Id(product.Id), product)
                     .DebugInformation
             );
 
@@ -94,7 +94,7 @@ namespace Elasticsearch.Source.Services
         public void SearchingDocumentsExample()
         {
             CreateIndex();
-            AddBooks();
+            AddProducts();
 
             Console.WriteLine(
                 DocumentService.GetAll<Product>(IndexName)
@@ -102,11 +102,11 @@ namespace Elasticsearch.Source.Services
                     .Count
             );
 
-            var book = DocumentService.GetById<Product>(IndexName, new Id(1));
+            var product = DocumentService.GetById<Product>(IndexName, new Id(1));
 
-            Console.WriteLine(JsonConvert.SerializeObject(book, Formatting.Indented));
+            Console.WriteLine(JsonConvert.SerializeObject(product, Formatting.Indented));
 
-            var books = SearchService.GetByQuery<Product>(IndexName, q => q
+            var products = SearchService.GetByQuery<Product>(IndexName, q => q
                 .DateRange(r => r
                     .Field(f => f.CreatedAt)
                     .GreaterThanOrEquals(new DateTime(2017, 01, 01))
@@ -114,7 +114,7 @@ namespace Elasticsearch.Source.Services
                 )
             ).Documents;
 
-            Console.WriteLine(JsonConvert.SerializeObject(books, Formatting.Indented));
+            Console.WriteLine(JsonConvert.SerializeObject(products, Formatting.Indented));
         }
 
         private static void SetNewValues(Product product)
