@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Elasticsearch.Source.Models;
+using Elasticsearch.Source.Models.Enums;
 using Elasticsearch.Source.Services.Abstraction;
 using Nest;
 using Newtonsoft.Json;
@@ -143,14 +144,16 @@ namespace Elasticsearch.Source.Services
                     Id = 1,
                     Tags = new List<string> { "Apple", "iPhone", "Смартфон" },
                     CreatedAt = new DateTime(2017, 09, 22),
-                    Description = "Нет"
+                    Description = "Нет",
+                    Category = ProductCategoryType.Smartphone
                 },
                 new Product("Ноутбук Apple MacBook Pro Retina (Z0SW0009F)", 144_999, new Vendor("Apple", "Китай"))
                 {
                     Id = 2,
                     Tags = new List<string> { "Apple", "MacBook", "Ноутбук" },
                     CreatedAt = new DateTime(2017, 09, 26),
-                    Description = "Нет"
+                    Description = "Нет",
+                    Category = ProductCategoryType.Laptop
                 },
                 new Product("CLR via C#", 1_463, new Vendor("", ""))
                 {
@@ -159,7 +162,8 @@ namespace Elasticsearch.Source.Services
                     CreatedAt = new DateTime(2016, 12, 20),
                     Description =
                         "Эта книга подробно описывает внутреннее устройство " +
-                        "и функционирование общеязыковой исполняющей среды (CLR) Microsoft .NET Framework"
+                        "и функционирование общеязыковой исполняющей среды (CLR) Microsoft .NET Framework",
+                    Category = ProductCategoryType.Book
                 },
             };
         }

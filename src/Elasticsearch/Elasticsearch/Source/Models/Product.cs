@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Elasticsearch.Source.Models.Base;
+using Elasticsearch.Source.Models.Enums;
 
 namespace Elasticsearch.Source.Models
 {
@@ -38,6 +39,11 @@ namespace Elasticsearch.Source.Models
         /// Дата создания (изготовления).
         /// </summary>
         public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// Категория.
+        /// </summary>
+        public ProductCategoryType Category { get; set; } = ProductCategoryType.NotSpecified;
 
         /// <summary>
         /// Инициализирует экземпляр класса <see cref="Product" />.
